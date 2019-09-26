@@ -1,33 +1,13 @@
-<!-- templates/playlists_new.html -->
+<!-- templates/playlists_index.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<form method='POST' action='/playlists'>
-    <fieldset>
-        <legend>New Playlist</legend>
-        <!-- TITLE -->
-        <p>
-            <label for='playlist-title'>Title</label><br>
-            <input id='playlist-title' type='text' name='title' />
-        </p>
+<h1>Playlists</h1>
 
-        <!-- DESCRIPTION -->
-        <p>
-            <label for='description'>Description</label><br>
-            <input id='description' type='text' name='description' />
-        </p>
+<a href='/playlists/new'>New Playlist</a>
 
-        <!-- VIDEO LINKS -->
-        <p>
-            <label for='playlist-videos'>Videos</label><br>
-            <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
-            <textarea id='playlist-videos' name='videos' rows='10'></textarea>
-        </p>
-    </fieldset>
-
-    <!-- BUTTON -->
-    <p>
-        <button type='submit'>Save Playlist</button>
-    </p>
-</form>
+{% for playlist in playlists %}
+    <h2><a href='/playlists/{{ playlist._id }}'>{{ playlist.title }}</a></h2>
+    <small>{{ playlist.description }}</small>
+{% endfor %}
 {% endblock %}
