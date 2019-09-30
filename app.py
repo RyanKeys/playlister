@@ -61,6 +61,13 @@ def playlists_new():
     return render_template('playlists_new.html', playlist={}, title='New Playlist')
 
 
+@app.route('/playlists/<playlist_id>/delete', methods=['POST'])
+def playlists_delete(playlist_id):
+    """Delete one playlist."""
+    playlists.delete_one({'_id': ObjectId(playlist_id)})
+    return redirect(url_for('playlists_index'))
+
+
 # OUR MOCK ARRAY OF PROJECTS
 '''playlists = [
     {'title': 'Cat Videos', 'description': 'Cats acting weird'},
